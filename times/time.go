@@ -10,8 +10,19 @@ const (
 	LayoutDateValue = "20060102"
 )
 
-// DateTimeZero returns zero o'clock of the datetime
-func DateTimeZero(t time.Time) time.Time {
+// MondayZeroTime returns week's begin time
+func MondayZeroTime(t time.Time) time.Time {
+	year, month, day := t.Date()
+	dayNum := int(t.Weekday())
+	if dayNum == 0 {
+		dayNum = 7
+	}
+	interval := time.Hour * 24 * time.Duration(dayNum-1)
+	return time.Date(year, month, day, 0, 0, 0, 0, t.Location()).Add(interval * -1)
+}
+
+// DateZeroTime returns day's begin time
+func DateZeroTime(t time.Time) time.Time {
 	year, month, day := t.Date()
 	return time.Date(year, month, day, 0, 0, 0, 0, t.Location())
 }
