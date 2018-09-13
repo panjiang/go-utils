@@ -12,4 +12,6 @@ requests
 slices
 sqls
 times
+sizes
+xstrings
 ```
