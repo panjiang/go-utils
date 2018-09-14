@@ -14,4 +14,5 @@ sqls
 times
 sizes
 xstrings
+maths
 ```

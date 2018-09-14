@@ -1,6 +1,9 @@
 package sizes
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestToByte(t *testing.T) {
 	type args struct {
@@ -67,4 +70,16 @@ func TestToByte(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestToString(t *testing.T) {
+	t.Log(toFixed(1.001, 1))
+	t.Log(fmt.Sprintf("%s", toFixed(1.001, 1)))
+	t.Log(ToString(1023))
+	t.Log(ToString(1024))
+	t.Log(ToString(1024 * 1024))
+	t.Log(ToString(1023 * 500))
+	t.Log(ToString(1024 * 1024 * 1024))
+	t.Log(ToString(1024 * 1024 * 1024 * 1024))
+	t.Log(ToString(1024 * 1024 * 1024 * 1024 * 1024))
 }

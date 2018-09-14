@@ -33,3 +33,8 @@ func DateNum(t time.Time) int64 {
 	num, _ := strconv.ParseInt(s, 10, 64)
 	return num
 }
+
+// TimestampMilli returns integer timestamp rounded to millisecond
+func TimestampMilli(t time.Time) int64 {
+	return t.UnixNano() / int64(time.Millisecond)
+}
