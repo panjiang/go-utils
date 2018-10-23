@@ -30,6 +30,12 @@ func UniqueRandID(i int64) *big.Int {
 	return m
 }
 
+// RandZoomUID 把唯一ID随机放大scale倍再加上base，结果仍保持唯一
+// 无法反推原UID，用于生成一个对外的唯一ID
+func RandZoomUID(i int64, scale int64, base int64) int64 {
+	return base + i*scale + rand.Int63n(scale)
+}
+
 var unixNanoID int64
 var unixNanoIDLock sync.Mutex
 
