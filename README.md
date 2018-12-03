@@ -1,5 +1,6 @@
 # Go Utils
-* Utils for extending GoLang
+* Utils for extending Go
+* Manage packages by Go modules (Go^1.11.1)
 
 ## Includes
 ```
