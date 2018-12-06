@@ -1,9 +1,12 @@
 package ids
 
 import (
+	"errors"
 	"fmt"
+	"math"
 	"math/big"
 	"math/rand"
+	"strings"
 
 	"github.com/tv42/base58"
 )
@@ -40,4 +43,19 @@ func GenerateCDKey(n int) {
 			break
 		}
 	}
+}
+
+// FixLenRandCDKey 定长纯随机CDKEY，需要手动判断重复
+func FixLenRandCDKey(length int) (string, error) {
+	if length > 10 {
+		return "", errors.New("max length 10")
+	}
+	rangeTop := math.Pow(58, float64(length))
+	r := rand.Int63n(int64(rangeTop))
+	s := string(base58.EncodeBig(nil, big.NewInt(r)))
+	if len(s) == length {
+		return s, nil
+	}
+	paddingLeft := strings.Repeat("1", length-len(s))
+	return paddingLeft + s, nil
 }
