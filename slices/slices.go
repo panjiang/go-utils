@@ -26,6 +26,16 @@ func ContainsInt64(list []int64, s int64) bool {
 	return false
 }
 
+// ContainsInt whether cotains certain int
+func ContainsInt(list []int, s int) bool {
+	for _, ss := range list {
+		if ss == s {
+			return true
+		}
+	}
+	return false
+}
+
 // MapToStr converts any kind slice to string slice
 func MapToStr(slice interface{}) (sliceStr []string, err error) {
 	if reflect.TypeOf(slice).Kind() != reflect.Slice {

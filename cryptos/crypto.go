@@ -24,7 +24,12 @@ func EncodeAuthHeader(user, password string) string {
 
 // DecodeAuthHeader 解密
 func DecodeAuthHeader(s string) (user, pass string, err error) {
-	authData := strings.Split(s, " ")[1]
+	authArr := strings.SplitN(s, " ", 2)
+	if len(authArr) != 2 {
+		err = errors.New("invalid auth header")
+		return
+	}
+	authData := authArr[1]
 
 	var data []byte
 	data, err = base64.StdEncoding.DecodeString(authData)
