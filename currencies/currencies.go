@@ -111,6 +111,14 @@ func Cmp(a *big.Float, b *big.Float) int {
 	return ix.Cmp(iy)
 }
 
+// NegateString 正负取反
+func NegateString(s string) string {
+	if strings.HasPrefix(s, "-") {
+		return s[1:len(s)]
+	}
+	return "-" + s
+}
+
 func init() {
 	Float64Max = FromFloat64(math.MaxFloat64)
 }
